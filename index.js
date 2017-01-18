@@ -82,6 +82,20 @@ class Machine {
       }
     })
   }
+    
+  static kill(name, done) {
+    Machine.command(['kill', name], (err) => {
+      if (HOST_NON_EXISTENT.test(err)) {
+        done(new Error(`Docker host "${name}" does not exist`))
+      } else if (ALREADY_STOPPED.test(err)) {
+        done()
+      } else {
+        done(err)
+      }
+    })
+  }    
+    
+    
 
   static env(name, opts, done) {
     if (typeof opts === 'function') done = opts, opts = {}
