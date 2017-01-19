@@ -174,7 +174,7 @@ test('kill', function (t) {
     t.same(s1.args, ['stop', 'beep'])
   })
 
-  new Machine().stop(err => {
+  new Machine().kill(err => {
     t.ifError(err, 'no stop error')
     t.same(s2.args, ['stop', 'default'])
   })
