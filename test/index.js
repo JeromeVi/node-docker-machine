@@ -170,28 +170,28 @@ test('kill', function (t) {
   const s5 = spy({ error: new Error('other error') })
 
   Machine.kill('beep', (err) => {
-    t.ifError(err, 'no kill error')
-    t.same(s1.args, ['kill', 'beep'])
+    t.ifError(err, 'no stop error')
+    t.same(s1.args, ['stop', 'beep'])
   })
 
-  new Machine().stop(err => {
-    t.ifError(err, 'no kill error')
-    t.same(s2.args, ['kill', 'default'])
+  new Machine().kill(err => {
+    t.ifError(err, 'no stop error')
+    t.same(s2.args, ['stop', 'default'])
   })
 
   Machine.kill('boop', (err) => {
     t.is(err.message, 'Docker host "boop" does not exist', 'non existent error')
-    t.same(s3.args, ['kill', 'boop'])
+    t.same(s3.args, ['stop', 'boop'])
   })
 
   new Machine().kill(err => {
-    t.ifError(err, 'no kill error if already stopped')
-    t.same(s4.args, ['kill', 'default'])
+    t.ifError(err, 'no stop error if already stopped')
+    t.same(s4.args, ['stop', 'default'])
   })
 
   Machine.kill('four', (err) => {
     t.is(err.message, 'other error', 'passthrough other error')
-    t.same(s5.args, ['kill', 'four'])
+    t.same(s5.args, ['stop', 'four'])
   })
 })
 
