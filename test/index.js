@@ -175,23 +175,23 @@ test('kill', function (t) {
   })
 
   new Machine().kill(err => {
-    t.ifError(err, 'no stop error')
-    t.same(s2.args, ['stop', 'default'])
+    t.ifError(err, 'no kill error')
+    t.same(s2.args, ['kill', 'default'])
   })
 
   Machine.kill('boop', (err) => {
     t.is(err.message, 'Docker host "boop" does not exist', 'non existent error')
-    t.same(s3.args, ['stop', 'boop'])
+    t.same(s3.args, ['kill', 'boop'])
   })
 
   new Machine().kill(err => {
     t.ifError(err, 'no stop error if already stopped')
-    t.same(s4.args, ['stop', 'default'])
+    t.same(s4.args, ['kill', 'default'])
   })
 
   Machine.kill('four', (err) => {
     t.is(err.message, 'other error', 'passthrough other error')
-    t.same(s5.args, ['stop', 'four'])
+    t.same(s5.args, ['kill', 'four'])
   })
 })
 
