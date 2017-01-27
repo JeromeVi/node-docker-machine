@@ -170,8 +170,8 @@ test('kill', function (t) {
   const s5 = spy({ error: new Error('other error') })
 
   Machine.kill('beep', (err) => {
-    t.ifError(err, 'no stop error')
-    t.same(s1.args, ['stop', 'beep'])
+    t.ifError(err, 'no kill error')
+    t.same(s1.args, ['kill', 'beep'])
   })
 
   new Machine().kill(err => {
@@ -185,7 +185,7 @@ test('kill', function (t) {
   })
 
   new Machine().kill(err => {
-    t.ifError(err, 'no stop error if already stopped')
+    t.ifError(err, 'no kill error if already stopped')
     t.same(s4.args, ['kill', 'default'])
   })
 
