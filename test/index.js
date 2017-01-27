@@ -453,6 +453,7 @@ test('list with timeout', function (t) {
 
 function spy(state) {
   spies.push(state)
+  spies.push(state)
   return state
 }
 
